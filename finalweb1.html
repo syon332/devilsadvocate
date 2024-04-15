@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>devils advocate</title> <!-- Updated title here -->
+  <style>
+    body {
+      font-family: "Times New Roman", Times, serif;
+      text-align: center;
+      background-color: #ccd5cf; /* Setting the background color */
+      padding: 20px; /* Adding padding to the body */
+      cursor: url('https://www.example.com/cursor.png'), auto; /* Replace URL with your cursor image */
+      position: relative; /* Set the body to relative position */
+    }
+    /* Style the cursor */
+    .custom-cursor {
+      width: 32px; /* Set width of cursor */
+      height: 32px; /* Set height of cursor */
+      background-image: url('https://www.example.com/cursor.png'); /* Replace URL with your cursor image */
+      background-size: contain; /* Ensure the cursor image is contained within the defined width and height */
+      background-repeat: no-repeat; /* Prevent the cursor image from repeating */
+      pointer-events: none; /* Ensure the cursor does not interfere with mouse events */
+      position: absolute; /* Position the cursor absolutely */
+      z-index: 9999; /* Ensure the cursor appears on top of other elements */
+      opacity: 0.7; /* Set the opacity of the cursor */
+      border-radius: 50%; /* Make the cursor circular */
+    }
+
+    /* Animation for bouncing "hi" */
+    @keyframes bounce {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-30px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    /* Apply animation to the "hi" element */
+    #hi {
+      font-size: 12px; /* Set the font size of "hi" */
+      position: absolute; /* Position the element absolutely */
+      animation: bounce 2s infinite; /* Apply the bounce animation */
+    }
+
+    /* Enlarge the countdown timer */
+    #countdown {
+      font-size: 72px; /* Increase the font size of the countdown */
+      margin-top: 50px;
+    }
+
+    /* Enlarge the links */
+    .link a {
+      font-size: 20px; /* Increase the font size of the links */
+    }
+
+    /* Style for the "album otw" text */
+    #album-otw {
+      position: absolute; /* Position the text absolutely */
+      top: 50%; /* Place the text at the vertical center */
+      right: -20px; /* Adjust the distance from the right edge */
+      transform: translateY(-50%) rotate(90deg); /* Rotate the text sideways */
+      font-size: 24px; /* Set the font size of the text */
+    }
+  </style>
+</head>
+<body>
+  <!-- Add a container for the cursor -->
+  <div class="custom-cursor"></div>
+  
+  <div id="countdown"></div>
+  <div class="link">
+    <a href="https://www.youtube.com/@wasteboyshelly4ever">https://www.youtube.com/@wasteboyshelly4ever</a>
+    <br>
+    <a href="https://www.tiktok.com/@wasteboy_shelly">https://www.tiktok.com/@wasteboy_shelly</a>
+    <br>
+    <a href="https://www.instagram.com/wasteboy_shelly/">https://www.instagram.com/wasteboy_shelly</a>
+    <br>
+    <a href="https://music.apple.com/gb/artist/wasteboy-shelly/1741222797">https://music.apple.com/gb/artist/wasteboy-shelly/1741222797</a>
+    <br>
+    <a href="https://open.spotify.com/artist/0dsNTOKZgoetcwQk29OwN9?si=5NWS6PcwThiz-hHOLQIumA">https://open.spotify.com/artist/0dsNTOKZgoetcwQk29OwN9?si=5NWS6PcwThiz-hHOLQIumA</a>
+  </div>
+
+  <div id="hi">hi</div> <!-- The element with the bouncing "hi" -->
+
+  <div id="album-otw">album otw</div> <!-- The sideways text -->
+
+  <script>
+    // Set the target date for the countdown (65 days from now)
+    var targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 65); // Adding 65 days
+
+    // Update the countdown every second
+    var x = setInterval(function() {
+
+      // Get the current date and time
+      var now = new Date().getTime();
+
+      // Play ticking sound
+      var audio = new Audio('tick.mp3'); // Replace 'tick.mp3' with the path to your ticking sound
+      audio.play();
+
+      // Calculate the remaining time
+      var distance = targetDate.getTime() - now;
+
+      // Calculate days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Display the countdown in the element with id="countdown"
+      document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+
+      // If the countdown is finished, display a message
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("countdown").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
